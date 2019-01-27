@@ -1,10 +1,10 @@
 cmake_minimum_required (VERSION 2.6)
 include(ExternalProject)
 
+project(sfc)
+
 set(${CMAKE_CXX_FLAGS} "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wmissing-prototypes -Wdiv-by-zero -Wbad-function-cast -Wcast-align -Wcast-qual -Wfloat-equal -Wmissing-declarations -Wnested-externs -Wno-unknown-pragmas -Wpointer-arith -Wredundant-decls -Wstrict-prototypes -Wswitch-enum -Wno-type-limits -fstack-protector -D_FORTIFY_SOURCE=2 -fPIE -fsanitize=address")
 set(${CMAKE_C_FLAGS} "${CMAKE_C_FLAGS} -Wall -Wextra -Wmissing-prototypes -Wdiv-by-zero -Wbad-function-cast -Wcast-align -Wcast-qual -Wfloat-equal -Wmissing-declarations -Wnested-externs -Wno-unknown-pragmas -Wpointer-arith -Wredundant-decls -Wstrict-prototypes -Wswitch-enum -Wno-type-limits -fstack-protector -D_FORTIFY_SOURCE=2 -fPIE -fsanitize=address")
-
-project(sfc)
 
 ExternalProject_Add(libhydrogen
   GIT_REPOSITORY    https://github.com/jedisct1/libhydrogen.git
