@@ -20,10 +20,25 @@ ExternalProject_Get_property(libhydrogen SOURCE_DIR)
 SET(LIBHYDROGEN_SOURCE_DIR ${SOURCE_DIR})
 SET(LIBHYDROGEN_INCLUDE_DIR ${LIBHYDROGEN_SOURCE_DIR})
 SET(LIBHYDROGEN_LIBRARY ${LIBHYDROGEN_SOURCE_DIR}/libhydrogen.a)
-include_directories(${LIBHYDROGEN_INCLUDE_DIR})
+
+ExternalProject_Add(CLI11
+  URL               https://github.com/CLIUtils/CLI11/releases/download/v1.7.0/CLI11.hpp
+  DOWNLOAD_NO_EXTRACT true
+  UPDATE_DISCONNECTED true
+  #SOURCE_SUBDIR     .
+  CONFIGURE_COMMAND ""
+  #BUILD_IN_SOURCE   true
+  BUILD_COMMAND     ""
+  INSTALL_COMMAND   ""
+)
+ExternalProject_Get_property(CLI11 DOWNLOADED_FILE)
+GET_FILENAME_COMPONENT(CLI11_INCLUDE_DIR ${DOWNLOADED_FILE} DIRECTORY)
 
 add_executable(${PROJECT_NAME} 
     src/sfc.cpp
+    src/cli.cpp
 )
+add_dependencies(${PROJECT_NAME} libhydrogen CLI11)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CLI11_INCLUDE_DIR} ${LIBHYDROGEN_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${LIBHYDROGEN_LIBRARY})
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
