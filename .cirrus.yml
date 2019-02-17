@@ -1,0 +1,10 @@
+container:
+  image: ubuntu:18.04
+task:
+  prepare_script: 
+    - apt-get update
+    - apt-get -y install cmake build-essential git
+  build_script: 
+    - mkdir build && cd build
+    - cmake ..
+    - make
