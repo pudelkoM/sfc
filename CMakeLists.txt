@@ -8,7 +8,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Wmissing-prototypes -Wdiv-by-
 
 ExternalProject_Add(libhydrogen
   GIT_REPOSITORY    https://github.com/jedisct1/libhydrogen.git
-  GIT_TAG           master
+  GIT_TAG           c9b4bea198e2057c452b3bfd558753149c8b06d3
   UPDATE_DISCONNECTED true
   SOURCE_SUBDIR     .
   CONFIGURE_COMMAND ""
