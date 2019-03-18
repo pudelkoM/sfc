@@ -7,19 +7,20 @@ SFC is a simple CLI tool to encrypt and decrypt single files, using a state-of-t
 Encrypt a file:
 
 ```bash
-cat some_file | sfc --pw="my secret" e > some_file_encrypted
+sfc --pw="my secret" e < some_file > some_file_encrypted
+cat some_file | sfc --pw="my secret" e > some_file_encrypted # unnecessary use of cat
 ```
 
 Decrypt a file:
 
 ```bash
-cat some_file_encrypted | sfc --pw="my secret" d > some_file
+sfc --pw="my secret" d < some_file_encrypted > some_file
 ```
 
 To prevent passwords from showing up in the shell history, you can also read the password from a file instead of the CLI:
 
 ```bash
-cat some_file | sfc --pw-file=./secret e > some_file_encrypted
+sfc --pw-file=secret_file e < some_file > some_file_encrypted
 ```
 
 ## Installation
