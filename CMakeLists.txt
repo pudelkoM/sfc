@@ -42,3 +42,6 @@ add_dependencies(${PROJECT_NAME} libhydrogen CLI11)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CLI11_INCLUDE_DIR} ${LIBHYDROGEN_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${LIBHYDROGEN_LIBRARY})
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
+
+enable_testing()
+include(test/tests.cmake)

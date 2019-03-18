@@ -8,3 +8,6 @@ task:
     - mkdir build && cd build
     - cmake ..
     - make
+  test_script:
+    - cd build
+    - make test

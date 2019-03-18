@@ -32,7 +32,8 @@ std::pair<struct args, int> parse_args(int argc, char *argv[]) {
     try {
         app.parse(argc, argv);
     } catch (const CLI::ParseError &e) {
-        return {{}, app.exit(e)};
+        auto err = app.exit(e); 
+        return {{}, err ? err : 1}; // "--help" is considered an error, make sure it's passed as code !=0
     }
 
     // Ensure we got either flag
