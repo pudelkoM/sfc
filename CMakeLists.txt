@@ -3,8 +3,8 @@ include(ExternalProject)
 
 project(sfc)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wmissing-prototypes -Wdiv-by-zero -Wbad-function-cast -Wcast-align -Wcast-qual -Wfloat-equal -Wmissing-declarations -Wnested-externs -Wno-unknown-pragmas -Wpointer-arith -Wredundant-decls -Wstrict-prototypes -Wswitch-enum -Wno-type-limits -fstack-protector -D_FORTIFY_SOURCE=2 -fPIE -fsanitize=address")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Wmissing-prototypes -Wdiv-by-zero -Wbad-function-cast -Wcast-align -Wcast-qual -Wfloat-equal -Wmissing-declarations -Wnested-externs -Wno-unknown-pragmas -Wpointer-arith -Wredundant-decls -Wstrict-prototypes -Wswitch-enum -Wno-type-limits -fstack-protector -D_FORTIFY_SOURCE=2 -fPIE -fsanitize=address")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wmissing-prototypes -Wdiv-by-zero -Wbad-function-cast -Wcast-align -Wcast-qual -Wfloat-equal -Wmissing-declarations -Wnested-externs -Wno-unknown-pragmas -Wpointer-arith -Wredundant-decls -Wstrict-prototypes -Wswitch-enum -Wno-type-limits -fstack-protector -D_FORTIFY_SOURCE=2 -fPIE -fvisibility=hidden -O3")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Wmissing-prototypes -Wdiv-by-zero -Wbad-function-cast -Wcast-align -Wcast-qual -Wfloat-equal -Wmissing-declarations -Wnested-externs -Wno-unknown-pragmas -Wpointer-arith -Wredundant-decls -Wstrict-prototypes -Wswitch-enum -Wno-type-limits -fstack-protector -D_FORTIFY_SOURCE=2 -fPIE -fvisibility=hidden -O3")
 
 ExternalProject_Add(libhydrogen
   GIT_REPOSITORY    https://github.com/jedisct1/libhydrogen.git
@@ -37,6 +37,7 @@ GET_FILENAME_COMPONENT(CLI11_INCLUDE_DIR ${DOWNLOADED_FILE} DIRECTORY)
 add_executable(${PROJECT_NAME} 
     src/sfc.cpp
     src/cli.cpp
+    src/crypto.cpp
 )
 add_dependencies(${PROJECT_NAME} libhydrogen CLI11)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CLI11_INCLUDE_DIR} ${LIBHYDROGEN_INCLUDE_DIR})
