@@ -2,10 +2,7 @@
 #include <string>
 #include <utility>
 
-struct args {
-    enum { ENCRYPT, DECRYPT } op;
-    std::string pw;
-};
+#include "sfc.h"
 
 std::pair<struct args, int> parse_args(int argc, char *argv[]) {
     CLI::App app{"Simple File Cryptor"};
